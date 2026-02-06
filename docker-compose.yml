@@ -44,5 +44,5 @@ volumes:
   mg_etc:
 
 networks:
-  lightrag_network:
+  lightrag_network_lk_oldenburg:
     driver: bridge
