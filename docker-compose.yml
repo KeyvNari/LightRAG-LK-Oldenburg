@@ -30,8 +30,8 @@ services:
       - "7687:7687"
       - "7444:7444"
     volumes:
-      - mg_lib:/var/lib/memgraph
-      - mg_log:/var/log/memgraph
+      - mg_lib_main:/var/lib/memgraph
+      - mg_log_main:/var/log/memgraph
     command: ["--log-level=TRACE"]
     restart: unless-stopped
     networks:
@@ -39,9 +39,9 @@ services:
 volumes:
   rag_storage:
   inputs:
-  mg_lib:
-  mg_log:
-  mg_etc:
+  mg_lib_main:
+  mg_log_main:
+  mg_etc_main:
 networks:
   lightrag_network_lk_oldenburg:
     driver: bridge
