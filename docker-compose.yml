@@ -1,6 +1,6 @@
 services:
   lightrag:
-    container_name: lightrag-lk-oldenburg
+    container_name: lightrag
     image: ghcr.io/hkuds/lightrag:latest
     build:
       context: .
@@ -21,6 +21,8 @@ services:
       - "host.docker.internal:host-gateway"
     depends_on:
       - memgraph
+    networks:
+      - lightrag_network_lk_oldenburg
 
   memgraph:
     image: memgraph/memgraph:latest
@@ -33,8 +35,14 @@ services:
       - mg_log:/var/log/memgraph
     command: ["--log-level=TRACE"]
     restart: unless-stopped
+    networks:
+      - lightrag_network_lk_oldenburg
 
 volumes:
   mg_lib:
   mg_log:
   mg_etc:
+
+networks:
+  lightrag_network:
+    driver: bridge
