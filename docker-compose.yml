@@ -10,8 +10,8 @@ services:
     ports:
       - "${PORT:-9621}:9621"
     volumes:
-      - ./data/rag_storage:/app/data/rag_storage
-      - ./data/inputs:/app/data/inputs
+      - rag_storage:/app/data/rag_storage
+      - inputs:/app/data/inputs
       - ./config.ini:/app/config.ini
       - ./.env:/app/.env
     env_file:
@@ -23,7 +23,6 @@ services:
       - memgraph
     networks:
       - lightrag_network_lk_oldenburg
-
   memgraph:
     image: memgraph/memgraph:latest
     container_name: memgraph
@@ -37,12 +36,12 @@ services:
     restart: unless-stopped
     networks:
       - lightrag_network_lk_oldenburg
-
 volumes:
+  rag_storage:
+  inputs:
   mg_lib:
   mg_log:
   mg_etc:
-
 networks:
   lightrag_network_lk_oldenburg:
     driver: bridge
