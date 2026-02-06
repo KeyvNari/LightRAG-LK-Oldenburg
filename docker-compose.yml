@@ -1,6 +1,6 @@
 services:
   lightrag:
-    container_name: lightrag
+    container_name: lightrag-lk-oldenburg
     image: ghcr.io/hkuds/lightrag:latest
     build:
       context: .
@@ -19,3 +19,22 @@ services:
     restart: unless-stopped
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    depends_on:
+      - memgraph
+
+  memgraph:
+    image: memgraph/memgraph:latest
+    container_name: memgraph
+    ports:
+      - "7687:7687"
+      - "7444:7444"
+    volumes:
+      - mg_lib:/var/lib/memgraph
+      - mg_log:/var/log/memgraph
+    command: ["--log-level=TRACE"]
+    restart: unless-stopped
+
+volumes:
+  mg_lib:
+  mg_log:
+  mg_etc:
