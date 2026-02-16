@@ -12,6 +12,7 @@ services:
     volumes:
       - rag_storage:/app/data/rag_storage
       - inputs:/app/data/inputs
+      - TIKTOKEN_CACHE_DIR:/app/data/tiktoken
       - ./config.ini:/app/config.ini
       - ./.env:/app/.env
     env_file:
@@ -39,6 +40,7 @@ services:
 volumes:
   rag_storage:
   inputs:
+  TIKTOKEN_CACHE_DIR:
   mg_lib_main:
   mg_log_main:
   mg_etc_main:
