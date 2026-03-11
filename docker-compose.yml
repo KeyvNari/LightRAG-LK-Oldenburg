@@ -20,8 +20,8 @@ services:
     restart: unless-stopped
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    depends_on:
-      - memgraph
+    # depends_on:
+    #   - memgraph
     networks:
       - lightrag_network_lk_oldenburg
   # memgraph:
