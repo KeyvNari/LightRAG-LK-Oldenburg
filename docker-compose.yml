@@ -24,26 +24,26 @@ services:
       - memgraph
     networks:
       - lightrag_network_lk_oldenburg
-  memgraph:
-    image: memgraph/memgraph:latest
-    container_name: memgraph
-    ports:
-      - "7687:7687"
-      - "7444:7444"
-    volumes:
-      - mg_lib_main:/var/lib/memgraph
-      - mg_log_main:/var/log/memgraph
-    command: ["--log-level=TRACE"]
-    restart: unless-stopped
-    networks:
-      - lightrag_network_lk_oldenburg
+  # memgraph:
+  #   image: memgraph/memgraph:latest
+  #   container_name: memgraph
+  #   ports:
+  #     - "7687:7687"
+  #     - "7444:7444"
+  #   volumes:
+  #     - mg_lib_main:/var/lib/memgraph
+  #     - mg_log_main:/var/log/memgraph
+  #   command: ["--log-level=TRACE"]
+  #   restart: unless-stopped
+  #   networks:
+  #     - lightrag_network_lk_oldenburg
 volumes:
   rag_storage:
   inputs:
   TIKTOKEN_CACHE_DIR:
-  mg_lib_main:
-  mg_log_main:
-  mg_etc_main:
+  # mg_lib_main:
+  # mg_log_main:
+  # mg_etc_main:
 networks:
   lightrag_network_lk_oldenburg:
     driver: bridge
